@@ -5,12 +5,24 @@ public class MyException {
 
     public static void main(String[] args) {
         System.out.println(args.length);
-        assert(args.length > 100);
+
+        //We should add -ea option to java command, because Never triggered in production code:
+        if(args.length == 2){
+            throw new IllegalArgumentException();
+        }
         
         try {
             checkFood(args[0]);
         } catch (BadFoodException e) {
             e.printStackTrace();
+        }
+        
+        try {
+            int x = Integer.parseInt("two");
+        } catch (NumberFormatException nfe) {
+            // TODO: handle exception
+        } catch (IllegalArgumentException iae) {
+            // TODO: handle exception
         }
             
     }
